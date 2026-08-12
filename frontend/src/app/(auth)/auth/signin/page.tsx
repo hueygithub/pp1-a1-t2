@@ -61,8 +61,8 @@ export default function SignInPage() {
     }
   }
 
-  return (
-    <div className="space-y-6">
+  return (   /*900 zinc ref*/
+    <div className="border border-zinc-800 space-y-6 pt-10 pr-10 pb-10 pl-10 rounded-md bg-zinc-900">
       <div className="space-y-1 text-center">
         <h1 className="text-2xl font-bold text-primary: #EDEDED">Welcome!</h1>
         {/* <p className="text-sm text-zinc-500">Enter your credentials to continue</p> */}
@@ -78,7 +78,7 @@ export default function SignInPage() {
       {/* </div> */}
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <div className="border: #27272A space-y-1.5 surface: #18181B">
+        <div className="space-y-1.5 surface: zinc-900">
           {/* <label htmlFor="email" className="text-sm font-medium">
             Email
           </label> */}
@@ -87,13 +87,13 @@ export default function SignInPage() {
             type="email"
             autoComplete="email"
             aria-invalid={!!errors.email}
-            aria-describedby={errors.email ? 'email-error' : undefined}
-            className="w-full rounded-md border: #27272A bg-white px-3 py-2 offset: 2px text-sm shadow-sm placeholder:text-zinc-400 focus:ring-2 focus:ring-zinc-500 focus:outline-none aria-invalid:border-red-500 dark:border-zinc-700 dark:bg-zinc-900 surface-sunken: #0C0C0E"
+            aria-describedby={errors.email ? 'email-error' : undefined} /*900 zinc ref*/
+            className="w-full border border-zinc-800 rounded-md px-3 py-2 offset: 2px border-focus: 2px text-sm shadow-sm placeholder:text-zinc-400 focus:ring-2 focus:ring-zinc-500 focus:outline-none aria-invalid:border-red-500 dark:bg-zinc-950 dark:bg-zinc-900 surface-sunken: bg-zinc-950"
             placeholder="Email"
             {...register('email')}
           />
           {errors.email && (
-            <p id="email-error" className="text-xs font-normal text-red-500 border-focus: 2px border-error: #E83F48 text-error: #F26B72" role="alert">
+            <p id="email-error" className="pt-2 text-red-400 text-xs font-normal border-focus: 2px border-error: #E83F48 text-error: #F26B72" role="alert">
               {errors.email.message}
             </p>
           )}
@@ -112,12 +112,12 @@ export default function SignInPage() {
             autoComplete="current-password"
             aria-invalid={!!errors.password}
             aria-describedby={errors.password ? 'password-error' : undefined}
-            className="w-full rounded-md border: #27272A px-3 py-2 offset: 2px border-focus: 2px text-sm shadow-sm placeholder:text-zinc-400 focus:ring-2 focus:ring-zinc-500 focus:outline-none aria-invalid:border-red-500 dark:border-zinc-700 dark:bg-zinc-900 surface-sunken: #0C0C0E"
+            className="w-full border border-zinc-800 rounded-md px-3 py-2 offset: 2px border-focus: 2px text-sm shadow-sm placeholder:text-zinc-400 focus:ring-2 focus:ring-zinc-500 focus:outline-none aria-invalid:border-red-500 dark:bg-zinc-950 dark:bg-zinc-900 surface-sunken: bg-zinc-950"
             placeholder="Password"
             {...register('password')} 
           />
           {errors.password && (
-            <p id="password-error" className="border: #E83F48 text-xs font-normal text-red-500 border-error: #E83F48 text-error: #F26B72" role="alert">
+            <p id="password-error" className="pt-2 border-red-400 text-red-400 text-xs font-normal border-error: #F26B72 text-error: #F26B72" role="alert">
               {errors.password.message}
             </p>
           )}
@@ -134,10 +134,11 @@ export default function SignInPage() {
         
         <button
         type="button"
-        onClick={handleGoogleSignIn}
-        className="text-primary: #EDEDED offset: 2px border-focus: 2px flex w-full items-center justify-center gap-3 rounded-md px-2 py-2.5 text-sm font-semibold shadow-sm transition-colors hover:bg-black dark:border-zinc-700 dark:bg-zinc-900 dark:hover:bg-zinc-800 surface-sunken: #0C0C0E border: #27272A"
+        onClick={handleGoogleSignIn}   /* bg-black ref here and also outline-1 outline-offset4*/
+        className="border border-zinc-800 text-primary: #EDEDED offset: 2px border-focus: 2px flex w-full items-center justify-center gap-3 rounded-md px-2 py-2.5 text-sm font-semibold shadow-sm transition-colors hover:bg-black dark:border-zinc-700 dark:bg-black dark:hover:bg-zinc-800 surface-sunken: #0C0C0E border: zinc-800"
       >
-        <svg className="h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
+        
+        <svg className="outline-1 outline-offset-4 rounded-xl h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
           <path
             d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
             fill="#4285F4"
