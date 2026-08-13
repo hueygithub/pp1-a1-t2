@@ -22,18 +22,13 @@ export default function SignUpPage() {
     resolver: zodResolver(signupSchema),
   })
 
-  useEffect(() => {
-    if (!loading && !isSubmitting && user) {
-      router.replace('/dashboard')
-    }
-  }, [loading, isSubmitting, user, router])
 
   if (loading) return <FullPageSpinner />
 
   const handleGoogleSignIn = async () => {
     try {
       await signInWithGoogle()
-      router.replace('/dashboard')
+      router.replace('/team')
     } catch {
       toast.error('Google sign-in failed. Please try again.')
     }

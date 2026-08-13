@@ -22,11 +22,6 @@ export default function SignInPage() {
     resolver: zodResolver(loginSchema),
   })
 
-  useEffect(() => {
-    if (!loading && user) {
-      router.replace('/dashboard')
-    }
-  }, [loading, user, router])
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
@@ -41,8 +36,7 @@ export default function SignInPage() {
     try {
       await signInWithEmail(data.email, data.password)
       toast.success('Signed in successfully')
-      router.replace('/dashboard')
-      router.refresh()
+      router.replace('/team')
     } catch (error: unknown) {
       if (error instanceof Error && error.message.includes('email-not-verified')) {
         toast.error('Please verify your email before signing in.')
