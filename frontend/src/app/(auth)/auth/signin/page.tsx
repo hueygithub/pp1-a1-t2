@@ -61,10 +61,10 @@ export default function SignInPage() {
     }
   }
 
-  return (   /*900 zinc ref*/
+  return (   /*for pt-10, pr-10, pb-10 and pl-10, reference is https://tailwindcss.com/docs/padding*/
     <div className="border border-zinc-800 space-y-6 pt-10 pr-10 pb-10 pl-10 rounded-md bg-zinc-900">
       <div className="space-y-1 text-center">
-        <h1 className="text-2xl font-bold text-primary: #EDEDED">Welcome!</h1>
+        <h1 className="text-2xl font-bold text-primary">Welcome!</h1>
         {/* <p className="text-sm text-zinc-500">Enter your credentials to continue</p> */}
       </div>
 
@@ -92,12 +92,16 @@ export default function SignInPage() {
             placeholder="Email"
             {...register('email')}
           />
+
+          {/* /*for below pt-2, reference is https://tailwindcss.com/docs/padding*/}
           {errors.email && (
-            <p id="email-error" className="pt-2 text-red-400 text-xs font-normal border-focus: 2px border-error: #E83F48 text-error: #F26B72" role="alert">
-              {errors.email.message}
+            <p id="email-error" className="pt-2 text-red-400 text-xs font-normal border-focus: 2px border-error text-error" role="alert">
+              {errors.email.message} 
             </p>
           )}
         </div>
+
+          
 
 {/* password field */}
         <div className="space-y-1.5">
@@ -116,8 +120,11 @@ export default function SignInPage() {
             placeholder="Password"
             {...register('password')} 
           />
+
+          {/* /*for below pt-2, reference is https://tailwindcss.com/docs/padding*/}
+
           {errors.password && (
-            <p id="password-error" className="pt-2 border-red-400 text-red-400 text-xs font-normal border-error: #F26B72 text-error: #F26B72" role="alert">
+            <p id="password-error" className="pt-2 border-red-400 text-red-400 text-xs font-normal border-error text-error" role="alert">
               {errors.password.message}
             </p>
           )}
@@ -127,15 +134,16 @@ export default function SignInPage() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full rounded-md offset: 2px border-focus: 2px surface-alt: #EDEDED px-4 py-2.5 text-sm font-semibold text-inverse: #09090B transition-colors hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+          className="w-full rounded-md offset: 2px border-focus: 2px surface-alt px-4 py-2.5 text-sm font-semibold text-inverse transition-colors hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
         >
           {isSubmitting ? 'Signing in…' : 'Sign in'}
         </button>
         
         <button
         type="button"
-        onClick={handleGoogleSignIn}   /* bg-black ref here and also outline-1 outline-offset4*/
-        className="border border-zinc-800 text-primary: #EDEDED offset: 2px border-focus: 2px flex w-full items-center justify-center gap-3 rounded-md px-2 py-2.5 text-sm font-semibold shadow-sm transition-colors hover:bg-black dark:border-zinc-700 dark:bg-black dark:hover:bg-zinc-800 surface-sunken: #0C0C0E border: zinc-800"
+        onClick={handleGoogleSignIn}   
+        /* for outline-1 outline-offset4 below: https://tailwindcss.com/docs/outline-style*/
+        className="border border-zinc-800 text-primary offset: 2px border-focus: 2px flex w-full items-center justify-center gap-3 rounded-md px-2 py-2.5 text-sm font-semibold shadow-sm transition-colors hover:bg-black dark:border-zinc-700 dark:bg-black dark:hover:bg-zinc-800 surface-sunken border: zinc-800"
       >
         
         <svg className="outline-1 outline-offset-4 rounded-xl h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
@@ -160,11 +168,11 @@ export default function SignInPage() {
       </button>
       </form>
 
-      <p className="text-center text-xs font-normal text-primary text-muted: #A0A0A8">
+      <p className="text-center text-xs font-normal text-primary text-muted">
         Create an account {' '}
         <Link
           href="/auth/signup"
-          className="text-xs font-semibold text-primary hover:underline dark:text-white"
+          className="text-decoration-line: underline text-xs font-semibold text-primary hover:underline dark:text-white"
         >
           here
         </Link>
@@ -172,3 +180,9 @@ export default function SignInPage() {
     </div>
   )
 }
+
+// For any tailwind included or used by Kamil Ahmed: 
+// The Tailwind docs can be a source https://v2.tailwindcss.com/docs
+
+// Microsoft Copilot 365 helped a bit to find out that the reason my commit wasn't being
+// executed was because there was a rule to follow with commit messages.
