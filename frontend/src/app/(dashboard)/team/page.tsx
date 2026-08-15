@@ -16,9 +16,11 @@ export default function TeamPage() {
       {/* page heading */}
       <div className="text-center mb-12">
         <p className="text-sm font-semibold text-muted uppercase tracking-wide">
-          Team 50
+          {/* Team 50 */}
         </p>
-        <h1 className="text-5xl font-bold text-primary mt-2">Our Crew</h1>
+        <h1 className="text-5xl font-bold text-primary mt-2">
+          {/* Our Crew */}
+        </h1>
       </div>
 
       {/* member cards - 3 per row, last row centered */}
