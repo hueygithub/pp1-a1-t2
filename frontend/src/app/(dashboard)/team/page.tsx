@@ -7,7 +7,7 @@ function truncateBlurb(text: string): string {
   if (text.length <= 240) {
     return text
   }
-  return text.slice(0, 240) + '...'
+  return text.slice(0, 240).trimEnd() + '...'
 }
 
 export default function TeamPage() {
