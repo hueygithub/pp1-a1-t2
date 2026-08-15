@@ -18,7 +18,9 @@ export default function TeamPage() {
         <p className="text-sm font-semibold text-muted uppercase tracking-wide">
           Team 50
         </p>
-        <h1 className="text-5xl font-bold text-primary mt-2">Our Crew</h1>
+        <h1 className="text-5xl font-bold text-primary mt-2">
+          Our Crew
+        </h1>
       </div>
 
       {/* member cards - 3 per row, last row centered */}
@@ -49,9 +51,9 @@ export default function TeamPage() {
               {member.role}
             </span>
 
-            {/* blurb */}
+            {/* blurb - show a dash if the member hasn't added one yet */}
             <p className="text-sm font-normal text-muted mt-3">
-              {truncateBlurb(member.blurb)}
+              {member.blurb ? truncateBlurb(member.blurb) : '\u2013'}
             </p>
           </div>
         ))}
