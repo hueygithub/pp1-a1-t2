@@ -55,7 +55,7 @@ export default function SignInPage() {
     }
   }
 
-  return (   /*900 zinc ref*/
+  return (   
     <div className="border border-zinc-800 space-y-6 pt-10 pr-10 pb-10 pl-10 rounded-md bg-zinc-900">
       <div className="space-y-1 text-center">
         <h1 className="text-2xl font-bold text-primary: #EDEDED">Welcome!</h1>
