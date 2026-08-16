@@ -15,9 +15,11 @@ function truncateBlurb(text: string): string {
   return text.slice(0, 240).trimEnd() + '...'
 }
 
-// check if a photo path looks valid (not null, not empty, starts with /)
+// check if a photo path looks valid (must start with / or http)
 function isValidPhoto(photo: string | null): boolean {
-  return typeof photo === 'string' && photo.trim().length > 0
+  if (typeof photo !== 'string') return false
+  const trimmed = photo.trim()
+  return trimmed.startsWith('/') || trimmed.startsWith('http')
 }
 
 export default function TeamPage() {
@@ -50,7 +52,14 @@ export default function TeamPage() {
               onError={(e) => {
                 const img = e.target as HTMLImageElement
                 // only swap to fallback if we haven't already (prevents infinite loop)
-                if (img.src !== window.location.origin + FALLBACK_IMAGE) {
+                if (!img.src.endsWith(FALLBACK_IMAGE)) {
+                  img.src = FALLBACK_IMAGE
+                }
+              }}
+              onLoad={(e) => {
+                const img = e.target as HTMLImageElement
+                // if image loaded but has no real content (corrupted), swap to fallback
+                if (img.naturalWidth === 0 && !img.src.endsWith(FALLBACK_IMAGE)) {
                   img.src = FALLBACK_IMAGE
                 }
               }}
