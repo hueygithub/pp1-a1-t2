@@ -4,6 +4,9 @@
 // Microsoft Copilot 365 helped a bit to find out that the reason my commit wasn't being
 // executed was because there was a rule to follow with commit messages.
 
+// The idea is there but the understanding is definitely lacking, but attributions 
+// were made (as can be seen above) by Kamil
+
 'use client'
 
 
