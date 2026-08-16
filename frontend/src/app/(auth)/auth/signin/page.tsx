@@ -1,4 +1,11 @@
+// For any tailwind included or used by Kamil Ahmed: 
+// The Tailwind docs can be a source https://v2.tailwindcss.com/docs
+
+// Microsoft Copilot 365 helped a bit to find out that the reason my commit wasn't being
+// executed was because there was a rule to follow with commit messages.
+
 'use client'
+
 
 import { useEffect } from 'react'
 import Link from 'next/link'

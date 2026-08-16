@@ -1,11 +1,25 @@
+// Microsoft Copilot 365 was used to develop the entire staticClass class and the idea
+// of using it. It helped to make the displayVar = "" line as well as the if statement and
+// the else part. 
+// Microsoft Copilot 365 also helped with some testing related to the onErro and onLoad parts
+// where lines that aren't present now were put in for testing. The idea of using the 
+// something.jpg [actually a .txt file but put as a jpg] was helped to be formed by 
+// Microsoft Copilot 365. 
+// It helped with corrupt image tests for the 'fail to load' part of one of the edge cases.
+
+
 'use client'
 
 import teamMembers from '@/data/team.json'
 
+class staticClass {
+    static TEAM_NAME = '' 
+}
+
 // team name - falls back to a default if empty or missing
-const TEAM_NAME = 'Team 50'
 const DEFAULT_TEAM_NAME = 'Our Team'
 const FALLBACK_IMAGE = '/fallback.png'
+
 
 // if the blurb is longer than 240 characters, cut it off and add "..."
 function truncateBlurb(text: string): string {
@@ -15,14 +29,23 @@ function truncateBlurb(text: string): string {
   return text.slice(0, 240).trimEnd() + '...'
 }
 
-// check if a photo path looks valid (not null, not empty, starts with /)
+// check if a photo path looks valid (must start with / or http)
 function isValidPhoto(photo: string | null): boolean {
-  return typeof photo === 'string' && photo.trim().length > 0
+  if (typeof photo !== 'string') return false
+  const trimmed = photo.trim()
+  return trimmed.startsWith('/') || trimmed.startsWith('http')
 }
 
 export default function TeamPage() {
-  // use team name with fallback if it's somehow empty
-  const displayName = TEAM_NAME?.trim() || DEFAULT_TEAM_NAME
+
+  var displayName = "" ///
+
+  if (staticClass.TEAM_NAME.length > 40 || typeof staticClass.TEAM_NAME === "undefined" || staticClass.TEAM_NAME === "") { ///
+    displayName = DEFAULT_TEAM_NAME ////
+  }
+  else {
+    displayName = staticClass.TEAM_NAME //// 
+  }
 
   return (
     <main className="min-h-screen bg-background px-6 py-16">
@@ -47,10 +70,19 @@ export default function TeamPage() {
             <img
               src={isValidPhoto(member.photo) ? member.photo! : FALLBACK_IMAGE}
               alt={member.name}
-              onError={(e) => {
+              onError={
+                (e) => {
                 const img = e.target as HTMLImageElement
                 // only swap to fallback if we haven't already (prevents infinite loop)
-                if (img.src !== window.location.origin + FALLBACK_IMAGE) {
+                if (!img.src.endsWith(FALLBACK_IMAGE)) {
+                  img.src = FALLBACK_IMAGE
+                }
+              }}
+
+              onLoad={(e) => {
+                const img = e.target as HTMLImageElement
+                // if image loaded but has no real content (corrupted), swap to fallback
+                if (img.naturalWidth === 0 && !img.src.endsWith(FALLBACK_IMAGE)) {
                   img.src = FALLBACK_IMAGE
                 }
               }}
@@ -68,7 +100,7 @@ export default function TeamPage() {
             </span>
 
             {/* blurb - show a dash if the member hasn't added one yet */}
-            <p className="text-sm font-normal text-muted mt-3">
+            <p className="text-sm font-normal text-muted mt-3 text-balance wrap-break-word">
               {member.blurb ? truncateBlurb(member.blurb) : '\u2013'}
             </p>
           </div>
