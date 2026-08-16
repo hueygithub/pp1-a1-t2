@@ -2,6 +2,11 @@
 
 import teamMembers from '@/data/team.json'
 
+// team name - falls back to a default if empty or missing
+const TEAM_NAME = 'Team 50'
+const DEFAULT_TEAM_NAME = 'Our Team'
+const FALLBACK_IMAGE = '/fallback.png'
+
 // if the blurb is longer than 240 characters, cut it off and add "..."
 function truncateBlurb(text: string): string {
   if (text.length <= 240) {
@@ -10,13 +15,21 @@ function truncateBlurb(text: string): string {
   return text.slice(0, 240).trimEnd() + '...'
 }
 
+// check if a photo path looks valid (not null, not empty, starts with /)
+function isValidPhoto(photo: string | null): boolean {
+  return typeof photo === 'string' && photo.trim().length > 0
+}
+
 export default function TeamPage() {
+  // use team name with fallback if it's somehow empty
+  const displayName = TEAM_NAME?.trim() || DEFAULT_TEAM_NAME
+
   return (
     <main className="min-h-screen bg-background px-6 py-16">
       {/* page heading */}
       <div className="text-center mb-12">
         <p className="text-sm font-semibold text-muted uppercase tracking-wide">
-          Team 50
+          {displayName}
         </p>
         <h1 className="text-5xl font-bold text-primary mt-2">
           Our Crew
@@ -30,20 +43,23 @@ export default function TeamPage() {
             key={index}
             className="w-full md:w-[calc(33.333%-1rem)] border border-border rounded-lg bg-surface p-4"
           >
-            {/* member photo, falls back to placeholder if missing or broken */}
+            {/* member photo, falls back to placeholder if missing, empty, or broken */}
             <img
-              src={member.photo || '/fallback.png'}
+              src={isValidPhoto(member.photo) ? member.photo! : FALLBACK_IMAGE}
               alt={member.name}
               onError={(e) => {
                 const img = e.target as HTMLImageElement
-                img.src = '/fallback.png'
+                // only swap to fallback if we haven't already (prevents infinite loop)
+                if (img.src !== window.location.origin + FALLBACK_IMAGE) {
+                  img.src = FALLBACK_IMAGE
+                }
               }}
               className="w-full aspect-square object-cover rounded-md"
             />
 
             {/* name */}
             <h2 className="text-xl font-semibold text-primary mt-4">
-              {member.name}
+              {member.name || 'Team Member'}
             </h2>
 
             {/* role badge */}
@@ -61,3 +77,4 @@ export default function TeamPage() {
     </main>
   )
 }
+
