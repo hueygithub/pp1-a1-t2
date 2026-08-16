@@ -52,7 +52,7 @@ export default function TeamPage() {
             </span>
 
             {/* blurb - show a dash if the member hasn't added one yet */}
-            <p className="text-sm font-normal text-muted mt-3">
+            <p className="text-sm font-normal text-muted mt-3 text-balance wrap-break-word">
               {member.blurb ? truncateBlurb(member.blurb) : '\u2013'}
             </p>
           </div>
