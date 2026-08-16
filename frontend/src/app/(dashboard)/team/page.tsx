@@ -9,6 +9,10 @@
 
 // The understanding of Kamil is definitely lacking, but attributions 
 // were made (as can be seen above) by Kamil
+// Microsoft copilot 365 also was given the onError and onLoad parts by Kamil, were a solution
+// was aimed to be gotten for the fail to load part of one of the edge cases. The AI
+// perhaps did give it or made comments, but no further changes were made from what was
+// already present.
 
 
 'use client'
