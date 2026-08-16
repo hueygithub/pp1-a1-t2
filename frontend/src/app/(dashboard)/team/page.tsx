@@ -7,7 +7,7 @@
 // Microsoft Copilot 365. 
 // It helped with corrupt image tests for the 'fail to load' part of one of the edge cases.
 
-// The idea is there but the understanding of Kamil is definitely lacking, but attributions 
+// The understanding of Kamil is definitely lacking, but attributions 
 // were made (as can be seen above) by Kamil
 
 
