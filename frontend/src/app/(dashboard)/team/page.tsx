@@ -1,11 +1,25 @@
+// Microsoft Copilot 365 was used to develop the entire staticClass class and the idea
+// of using it. It helped to make the displayVar = "" line as well as the if statement and
+// the else part. 
+// Microsoft Copilot 365 also helped with some testing related to the onErro and onLoad parts
+// where lines that aren't present now were put in for testing. The idea of using the 
+// something.jpg [actually a .txt file but put as a jpg] was helped to be formed by 
+// Microsoft Copilot 365. 
+// It helped with corrupt image tests for the 'fail to load' part of one of the edge cases.
+
+
 'use client'
 
 import teamMembers from '@/data/team.json'
 
+class staticClass {
+    static TEAM_NAME = '' 
+}
+
 // team name - falls back to a default if empty or missing
-const TEAM_NAME = 'Team 50'
 const DEFAULT_TEAM_NAME = 'Our Team'
 const FALLBACK_IMAGE = '/fallback.png'
+
 
 // if the blurb is longer than 240 characters, cut it off and add "..."
 function truncateBlurb(text: string): string {
@@ -23,8 +37,15 @@ function isValidPhoto(photo: string | null): boolean {
 }
 
 export default function TeamPage() {
-  // use team name with fallback if it's somehow empty
-  const displayName = TEAM_NAME?.trim() || DEFAULT_TEAM_NAME
+
+  var displayName = "" ///
+
+  if (staticClass.TEAM_NAME.length > 40 || typeof staticClass.TEAM_NAME === "undefined" || staticClass.TEAM_NAME === "") { ///
+    displayName = DEFAULT_TEAM_NAME ////
+  }
+  else {
+    displayName = staticClass.TEAM_NAME //// 
+  }
 
   return (
     <main className="min-h-screen bg-background px-6 py-16">
@@ -49,13 +70,15 @@ export default function TeamPage() {
             <img
               src={isValidPhoto(member.photo) ? member.photo! : FALLBACK_IMAGE}
               alt={member.name}
-              onError={(e) => {
+              onError={
+                (e) => {
                 const img = e.target as HTMLImageElement
                 // only swap to fallback if we haven't already (prevents infinite loop)
                 if (!img.src.endsWith(FALLBACK_IMAGE)) {
                   img.src = FALLBACK_IMAGE
                 }
               }}
+
               onLoad={(e) => {
                 const img = e.target as HTMLImageElement
                 // if image loaded but has no real content (corrupted), swap to fallback
